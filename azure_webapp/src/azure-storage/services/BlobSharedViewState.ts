@@ -72,12 +72,11 @@ export class BlobSharedViewStateService {
       })),
       scan<Dictionary<T>>(
         (items, item) => ({
-          ...items,
+          ...(items as object),
           ...item
-        }),
-        {}
+        })
       ),
-      map(items => Object.values(items))
+      map(items => Object.values((items as object)))
     );
 
   getStorageOptionsWithContainer(): Observable<BlobContainerRequest> {
